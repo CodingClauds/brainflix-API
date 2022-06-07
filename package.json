@@ -1,0 +1,27 @@
+{
+  "name": "claudio-miranda-brainflix-apii",
+  "version": "1.0.0",
+  "description": "New Read me file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodingClauds/brainflix-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodingClauds/brainflix-API/issues"
+  },
+  "homepage": "https://github.com/CodingClauds/brainflix-API#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16",
+    "uuid": "^8.3.2"
+  }
+}
