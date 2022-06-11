@@ -1,0 +1,17 @@
+GET http://localhost:8080/videos
+
+####
+
+GET http://localhost:8080/videos/c05b9a93-8682-4ab6-aff2-92ebb4bbfc14
+
+#### 
+
+POST http://localhost:8080/videos
+Content-Type: application/json
+
+
+{
+    "title": "New Name",
+    "description": "This is the new post we created"
+}
+ 

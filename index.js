@@ -3,22 +3,22 @@ const express = require("express");
 const app = express(); // This starts express
 const cors = require("cors"); // Cross Origin Resource Sharing
 const videoRoute = require("./routes/videos");
+const fs = require("fs");
 app.use(cors());
 
 // SERVER PORT
-const PORT = 8080;
+const port = 8080;
 
 // Adding Middleware
 app.use(express.json());
 
-app.use("/videos", videoRoute);
+// next() is important to have in middleware it would not run without
+app.use((req, res, next) => {
+  next();
+});
 
-//  Middleware template - next is important to have in middleware
-// app.use((req, res, next) => {
-//   console.log('Response ')
-//   next();
-// });
+app.use("/", videoRoute);
 
 app.listen(port, () => {
-  console.log(`Server is Running on Port: ${PORT}`);
+  console.log(`Server is Running on Port: ${port}`);
 });

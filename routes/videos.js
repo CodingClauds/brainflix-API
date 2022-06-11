@@ -1,6 +1,6 @@
 // Imports
+const { response } = require("express");
 const express = require("express");
-const { json } = require("express/lib/response");
 const router = express.Router();
 const fs = require("fs"); // Read and Write files
 const { v4: uuid } = require("uuid"); // Creates Random ID
@@ -9,34 +9,51 @@ const { v4: uuid } = require("uuid"); // Creates Random ID
 const videoFilePath = "./data/videos.json";
 
 // Parse Function that will allows us to convert data from String to an object, so we can use in javascript.
-const readNewVideos = () => {
-  return JSON.parse(fs.readFileSync(videoFilePath));
-};
+// const getVideos = () => {
+//   return JSON.parse(fs.readFileSync(videoFilePath));
+// };
+
+const readVideoDetails = JSON.parse(fs.readFileSync(videoFilePath));
 
 // Stringify Function that allows us to convert data back to a string from an object, so we can now add to our database.
 // This takes two arguments, the path and the "data" we decide to write to database. This will go in the (Data here)
-const writeNewVideos = () => {
-  fs.writeFileSync(videoFilePath, JSON.stringify());
-};
+// const writeNewVideo = () => {
+//   fs.writeFileSync(videoFilePath, JSON.stringify());
+// };
 
-// Home
-router.get("/", (req, res) => {
-  res.send(readNewVideos);
-  //   res.send("GET request to /");
+// Get all Videos
+router.route("/videos").get((req, res) => {
+  res.send(readVideoDetails);
 });
 
-// // Video Data with Detail Description
-// router.get("/:id", (req, res) => {
-//   const videoId = req.params.id;
-//   res.send(videoId);
-// });
+// Getting one Video with :id
+router.route("/videos/:id").get((req, res) => {
+  const selectVideoId = req.params.id;
 
-// router.post("/", (req, res) => {
-//   // res.send(req.body.id);
+  const foundVideo = readVideoDetails.find(
+    (video) => video.id === selectVideoId
+  );
+
+  res.send(foundVideo);
+});
+
+// // Creating one Video and persisting it to database
+// router.route("/").post((req, res) => {
+//   res.send("req.body.id");
 //   video.push(req.body.id);
+
+//   const postVideo = newVideo({
+//     image: req.body.image,
+//     title: req.body.title,
+//     videoDescription: req.body.description,
+//   });
+
+//   // Success status when new video is posted
+//   res.status(201).json(newVideo);
 
 //   let video = [
 //     {
+//       id: `${uuid}`, //See if this syntax is correct!
 //       title: "Become A Travel Pro In One Easy Lesson",
 //       channel: "Todd Welch",
 //       image: "https://i.imgur.com/5qyCZrD.jpg",
@@ -50,7 +67,8 @@ router.get("/", (req, res) => {
 //       comments: [],
 //     },
 //   ];
-//   return res.status(201).send("Added Content");
+//   console.log(writeNewVideo);
+//   // return res.status(201).send("Added Content");
 // });
 
 module.exports = router;
