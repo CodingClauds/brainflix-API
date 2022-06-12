@@ -17,7 +17,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", videoRoute);
+app.use("/videos", videoRoute);
 
 app.listen(port, () => {
   console.log(`Server is Running on Port: ${port}`);
