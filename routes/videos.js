@@ -14,10 +14,8 @@ const readVideoDetails = () => {
 
 // const readVideoDetails = JSON.parse(fs.readFileSync(videoFilePath));
 
-// Stringify Function that allows us to convert data back to a string from an object, so we can now add to our database.
-// This takes two arguments, the path and the "data" we decide to write to database. This will go in the (Data here)
 const writeNewVideo = (addedVideo) => {
-  // Get existing videos that are in the user.json file.
+  // Get existing videos that are in the .json file.
   let existingVideos = readVideoDetails();
 
   existingVideos.push(addedVideo);
@@ -43,19 +41,18 @@ router.route("/:id").get((req, res) => {
 });
 
 // Creating one Video and persisting it to database
-
 router.route("/").post((req, res) => {
   const videoObject = {
     id: uuidv4(),
     title: req.body.title,
-    channel: "Todd Welch",
-    image: "https://i.imgur.com/5qyCZrD.jpg", // Add staic image file / public folder
+    channel: "",
+    image: "http://localhost:8080/images/image5.jpeg",
     description: req.body.description,
-    views: "2,043,765",
-    likes: "400,058",
-    duration: "7:26",
-    video: "https://project-2-api.herokuapp.com/stream",
-    timestamp: 1625158995000, // Add date in a dynamic method
+    views: "",
+    likes: "",
+    duration: "",
+    video: "",
+    timestamp: new Date(),
     comments: [
       {
         name: "Martin Evergreen",
