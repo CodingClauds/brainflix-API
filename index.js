@@ -9,7 +9,7 @@ app.use(cors());
 
 const videoRoute = require("./routes/videos");
 
-// SERVER PORT
+// SERVER PORT w/ contigency for DEV mode if PROD fails
 let PORT;
 process.env.STATUS === "production"
   ? (PORT = process.env.PROD_PORT)
@@ -26,5 +26,7 @@ app.use((req, res, next) => {
 app.use("/videos", videoRoute);
 
 app.listen(PORT, () => {
-  console.log(`Server is Running on Port: ${PORT}`);
+  console.log(
+    `Server running in ${process.env.STATUS} and is currently on Port: ${PORT}`
+  );
 });
