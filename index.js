@@ -9,7 +9,7 @@ app.use(cors());
 
 const videoRoute = require("./routes/videos");
 
-// SERVER PORT w/ contigency for DEV mode if PROD fails
+// SERVER PORT w/ contingency for DEV mode if PROD fails
 let PORT;
 process.env.STATUS === "production"
   ? (PORT = process.env.PROD_PORT)
@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routing to videos.js
+// Routing to videos.js = (http://localhost:8080/videos)
 app.use("/videos", videoRoute);
 
 app.listen(PORT, () => {
