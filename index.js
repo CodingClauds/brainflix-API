@@ -1,5 +1,6 @@
+// Import packages, Middleware & file system module
 const express = require("express");
-const cors = require("cors"); // Cross Origin Resource Sharing
+const cors = require("cors");
 const app = express();
 const fs = require("fs");
 
@@ -15,7 +16,6 @@ process.env.STATUS === "production"
   ? (PORT = process.env.PROD_PORT)
   : (PORT = process.env.DEV_PORT);
 
-// Adding Middleware, next() is important in middleware
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -25,8 +25,11 @@ app.use((req, res, next) => {
 // Routing to videos.js = (http://localhost:8080/videos)
 app.use("/videos", videoRoute);
 
+// Connection
 app.listen(PORT, () => {
   console.log(
     `Server running in ${process.env.STATUS} and is currently on Port: ${PORT}`
   );
 });
+
+module.exports = app;
