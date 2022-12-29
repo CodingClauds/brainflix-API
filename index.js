@@ -31,3 +31,5 @@ app.listen(PORT, () => {
     `Server running in ${process.env.STATUS} and is currently on Port: ${PORT}`
   );
 });
+
+module.exports = app;
